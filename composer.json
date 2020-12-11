@@ -1,0 +1,13 @@
+{
+    "name": "openwpdotorg/owp-core",
+    "description": "Defined core functions, constant, .. for all themes. Which has been made by openwp.org",
+    "type": "library",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "openwpdotorg",
+            "email": "openwp.org@gmai.com"
+        }
+    ],
+    "require": {}
+}
