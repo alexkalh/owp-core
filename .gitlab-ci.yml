@@ -1,15 +1,5 @@
 stages:
-  - test
   - deploy
-
-test:
-  stage: test
-  image: phpwatch/docker-php:latest
-  before_script:
-    - php -v
-    - composer install --prefer-dist -q --no-progress
-  script:
-    - ./vendor/bin/phpunit -v --coverage-text --colors=never --stderr
 
 deploy_composer:
   only:
