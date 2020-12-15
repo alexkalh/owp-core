@@ -16,15 +16,21 @@ final class CacheFactory {
 	/**
 	 * @var CacheInterface|mixed
 	 */
-	public CacheInterface $producer;
+	private CacheInterface $_producer;
 
 	/**
 	 * CacheFactory constructor.
 	 */
 	private function __construct() {
 		$producer = get_theme_mod( Hook::CACHE_BY, TransientCache::class );
-		if ( is_subclass_of( $producer, CacheInterface::class ) ) {
-			$this->producer = call_user_func( $producer, '::get_instance' );
-		}
+		$this->_producer = call_user_func( $producer, '::get_instance' );
+		//if ( is_subclass_of( $producer, CacheInterface::class ) ) {}
+	}
+
+	/**
+	 * @return CacheInterface
+	 */
+	public function getProducer(): CacheInterface {
+		return $this->_producer;
 	}
 }
