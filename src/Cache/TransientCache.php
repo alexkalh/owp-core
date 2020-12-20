@@ -1,13 +1,10 @@
 <?php
 
-namespace OWP\Cache;
+namespace OwpCore\Cache;
 
-use OWP\Contract\CacheInterface;
-use OWP\Pattern\Singleton;
+use OwpCore\Contract\CacheInterface;
 
 class TransientCache implements CacheInterface {
-	use Singleton;
-
 	/**
 	 * @param string $key
 	 * @param string $value

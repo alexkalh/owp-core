@@ -1,10 +1,10 @@
 <?php
 
-namespace OWP\Contract;
+namespace OwpCore\Contract;
 
 /**
  * Interface CacheInterface
- * @package OWP\Contract
+ * @package OwpCore\Contract
  */
 interface CacheInterface {
 	/**

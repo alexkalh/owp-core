@@ -1,18 +1,15 @@
 <?php
 
-namespace OWP\Cache;
+namespace OwpCore\Cache;
 
-use OWP\Constant\Hook;
-use OWP\Contract\CacheInterface;
-use OWP\Pattern\Singleton;
+use OwpCore\Constant\FilterHook\Cache;
+use OwpCore\Contract\CacheInterface;
 
 /**
  * Class CacheFactory
- * @package OWP\Cache
+ * @package OwpCore\Cache
  */
 final class CacheFactory {
-	use Singleton;
-
 	/**
 	 * @var CacheInterface|mixed
 	 */
@@ -21,10 +18,11 @@ final class CacheFactory {
 	/**
 	 * CacheFactory constructor.
 	 */
-	private function __construct() {
-		$producer = get_theme_mod( Hook::CACHE_BY, TransientCache::class );
-		$this->_producer = call_user_func( $producer, '::get_instance' );
-		//if ( is_subclass_of( $producer, CacheInterface::class ) ) {}
+	public function __construct() {
+		$classname = get_theme_mod( Cache::CACHE_TYPE, TransientCache::class );
+		if (is_subclass_of($classname, CacheInterface::class)) {
+			$this->_producer = new $classname;
+		}
 	}
 
 	/**

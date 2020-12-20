@@ -1,10 +1,10 @@
 <?php
 
-namespace OWP\Pattern;
+namespace OwpCore\Pattern;
 
 /**
  * Trait Singleton
- * @package OWP\Pattern
+ * @package OwpCore\Pattern
  */
 trait Singleton {
 	private static object $_instance;
