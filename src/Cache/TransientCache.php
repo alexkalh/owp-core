@@ -10,7 +10,7 @@ class TransientCache implements CacheInterface {
 	 * @param string $value
 	 * @param int $exp
 	 */
-	public function set( string $key, string $value, int $exp = - 1 ): void {
+	public function set( string $key, string $value, int $exp = 0 ): void {
 		set_transient( $key, $value, $exp );
 	}
 

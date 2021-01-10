@@ -6,25 +6,25 @@ namespace OwpCore\Contract;
  * Interface CacheInterface
  * @package OwpCore\Contract
  */
-interface CacheInterface {
+interface CacheFactoryInterface {
 	/**
 	 * @param string $key
 	 * @param string $value
 	 * @param int $exp
 	 */
-	public function set( string $key, string $value, int $exp ): void;
+	public static function set( string $key, string $value, int $exp = - 1 ): void;
 
 	/**
 	 * @param string $key
 	 *
 	 * @return string
 	 */
-	public function get( string $key ): string;
+	public static function get( string $key ): string;
 
 	/**
 	 * @param string $key
 	 *
 	 * @return bool
 	 */
-	public function remove( string $key ): bool;
+	public static function remove( string $key ): bool;
 }

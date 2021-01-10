@@ -7,12 +7,9 @@ namespace OwpCore\Pattern;
  * @package OwpCore\Pattern
  */
 trait Singleton {
-	private static object $_instance;
+	private static $_instance;
 
-	/**
-	 * @return object
-	 */
-	public static function get_instance(): object {
+	public static function get_instance() {
 		$class = __CLASS__;
 
 		if ( ! self::$_instance instanceof $class ) {
