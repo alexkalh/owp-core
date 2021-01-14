@@ -6,7 +6,6 @@ use OwpCore\Cache\CacheFactory;
 use OwpCore\Constant\Duration;
 use OwpCore\Constant\FilterHook\Cache;
 use OwpCore\Contract\CacheableInterface;
-use OwpCore\Contract\WidgetInterface;
 
 /**
  * Class Widget

@@ -3,7 +3,6 @@
 namespace OwpCore\Widget;
 
 use OwpCore\Helper\Data;
-use OwpCore\Contract\StreamWidgetInterface;
 
 abstract class StreamWidget extends Widget implements StreamWidgetInterface {
 	/**

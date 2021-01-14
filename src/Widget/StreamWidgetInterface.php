@@ -1,6 +1,6 @@
 <?php
 
-namespace OwpCore\Contract;
+namespace OwpCore\Widget;
 
 /**
  * Interface StreamWidgetInterface

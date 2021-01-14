@@ -2,7 +2,9 @@
 
 namespace OwpCore\Helper;
 
+use OwpCore\Constant\HTML\Attribute;
 use OwpCore\Pattern\Singleton;
+use OwpCore\Constant\HTML\Tag;
 
 class Data {
 	use Singleton;
@@ -16,28 +18,28 @@ class Data {
 	private function _set_allowed_tags() {
 		$tags = wp_kses_allowed_html( 'post' );
 
-		$tags['iframe']['src']             = array();
-		$tags['iframe']['height']          = array();
-		$tags['iframe']['width']           = array();
-		$tags['iframe']['frameborder']     = array();
-		$tags['iframe']['allowfullscreen'] = array();
+		$tags[ Tag::IFRAME ]['src']             = array();
+		$tags[ Tag::IFRAME ]['height']          = array();
+		$tags[ Tag::IFRAME ]['width']           = array();
+		$tags[ Tag::IFRAME ]['frameborder']     = array();
+		$tags[ Tag::IFRAME ]['allowfullscreen'] = array();
 
-		$tags['input']['class']   = array();
-		$tags['input']['id']      = array();
-		$tags['input']['name']    = array();
-		$tags['input']['value']   = array();
-		$tags['input']['type']    = array();
-		$tags['input']['checked'] = array();
+		$tags[ Tag::INPUT ][ Attribute::CLASSES ] = array();
+		$tags[ Tag::INPUT ]['id']                 = array();
+		$tags[ Tag::INPUT ]['name']               = array();
+		$tags[ Tag::INPUT ]['value']              = array();
+		$tags[ Tag::INPUT ]['type']               = array();
+		$tags[ Tag::INPUT ]['checked']            = array();
 
-		$tags['select']['class'] = array();
-		$tags['select']['id']    = array();
-		$tags['select']['name']  = array();
-		$tags['select']['value'] = array();
-		$tags['select']['type']  = array();
+		$tags[ Tag::SELECT ][ Attribute::CLASSES ] = array();
+		$tags[ Tag::SELECT ]['id']                 = array();
+		$tags[ Tag::SELECT ]['name']               = array();
+		$tags[ Tag::SELECT ]['value']              = array();
+		$tags[ Tag::SELECT ]['type']               = array();
 
-		$tags['option']['selected'] = array();
+		$tags[ Tag::OPTION ]['selected'] = array();
 
-		$tags['style']['types'] = array();
+		$tags[ Tag::STYLE ]['types'] = array();
 
 		$microdata_tags = array( 'div', 'section', 'article', 'a', 'span', 'img', 'time', 'figure' );
 
