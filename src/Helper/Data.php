@@ -2,6 +2,7 @@
 
 namespace OwpCore\Helper;
 
+use OwpCore\Constant\FilterHook\Data as DataFilter;
 use OwpCore\Constant\HTML\Attribute;
 use OwpCore\Pattern\Singleton;
 use OwpCore\Constant\HTML\Tag;
@@ -53,12 +54,12 @@ class Data implements DataInterface {
 		);
 
 		foreach ( $microdata_tags as $tag ) {
-			$tags[ $tag ]['itemscope'] = array();
-			$tags[ $tag ]['itemtype']  = array();
-			$tags[ $tag ]['itemprop']  = array();
+			$tags[ $tag ][ Attribute::ITEM_SCOPE ] = array();
+			$tags[ $tag ][ Attribute::ITEM_TYPE ]  = array();
+			$tags[ $tag ][ Attribute::ITEM_PROP ]  = array();
 		}
 
-		$this->_allowed_tags = apply_filters( \OwpCore\Constant\FilterHook\Data::SET_ALLOWED_TAGS, $tags );
+		$this->_allowed_tags = apply_filters( DataFilter::SET_ALLOWED_TAGS, $tags );
 	}
 
 	public function get_allowed_tags(): array {
