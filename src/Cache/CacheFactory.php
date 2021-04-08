@@ -2,6 +2,7 @@
 
 namespace OwpCore\Cache;
 
+use OwpCore\Constant\FilterHook\Cache;
 use OwpCore\Contract\CacheFactoryInterface;
 use OwpCore\Contract\CacheInterface;
 
@@ -16,7 +17,7 @@ class CacheFactory implements CacheFactoryInterface {
 	 */
 	private static function getProducer(): CacheInterface {
 		if ( empty( $_producer ) ) {
-			$classname = get_theme_mod( \OwpCore\Constant\FilterHook\Cache::CACHE_TYPE, TransientCache::class );
+			$classname = get_theme_mod( Cache::CACHE_TYPE, TransientCache::class );
 			if ( is_subclass_of( $classname, CacheInterface::class ) ) {
 				self::$_producer = new $classname;
 			} else {
