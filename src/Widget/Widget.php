@@ -6,12 +6,13 @@ use OwpCore\Cache\CacheFactory;
 use OwpCore\Constant\Duration;
 use OwpCore\Constant\FilterHook\Cache;
 use OwpCore\Contract\CacheableInterface;
+use WP_Widget;
 
 /**
  * Class Widget
  * @package OwpCore\Contract
  */
-abstract class Widget extends \WP_Widget implements WidgetInterface, CacheableInterface {
+abstract class Widget extends WP_Widget implements WidgetInterface, CacheableInterface {
 	private bool $_is_use_cache;
 
 	/**
