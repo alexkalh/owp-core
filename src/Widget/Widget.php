@@ -6,6 +6,8 @@ use OwpCore\Cache\CacheFactory;
 use OwpCore\Constant\Duration;
 use OwpCore\Constant\FilterHook\Cache;
 use OwpCore\Contract\CacheableInterface;
+use OwpCore\Contract\I18n\TranslatorInterface;
+use OwpCore\I18n\Translator;
 use WP_Widget;
 
 /**
@@ -13,13 +15,16 @@ use WP_Widget;
  * @package OwpCore\Contract
  */
 abstract class Widget extends WP_Widget implements WidgetInterface, CacheableInterface {
-	private bool $_is_use_cache;
+	protected bool $_is_use_cache;
+	protected TranslatorInterface $translator;
 
 	/**
 	 * @inheritDoc
 	 */
 	public function __construct( string $id_base, string $name, $widget_options = array(), $control_options = array() ) {
 		$this->_is_use_cache = get_theme_mod( Cache::IS_USE_IN_WIDGET, true );
+		$this->translator    = Translator::get_instance();
+
 		parent::__construct( $id_base, $name, $widget_options, $control_options );
 	}
 
