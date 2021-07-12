@@ -16,7 +16,7 @@ class Dictionary implements DictionaryInterface {
 		$mapping = array();
 
 		$mapping[ Slug::ALL ]                                         = 'All';
-		$mapping[ Slug:: AND ]                                        = 'And';
+		$mapping[ Slug::AND ]                                         = 'And';
 		$mapping[ Slug::CATEGORIES ]                                  = 'Categories';
 		$mapping[ Slug::COMBINE_CONDITION_BY_TAGS_CATEGORIES_FORMAT ] = 'Combine condition by Tags, Categories, and Format';
 		$mapping[ Slug::FORMAT ]                                      = 'Format';
@@ -27,7 +27,7 @@ class Dictionary implements DictionaryInterface {
 		$mapping[ Slug::MONTHS ]                                      = 'Months';
 		$mapping[ Slug::MOST_COMMENTS ]                               = 'Most comments';
 		$mapping[ Slug::NUMBER_OF_POSTS ]                             = 'Number of posts';
-		$mapping[ Slug:: OR ]                                         = 'Or';
+		$mapping[ Slug::OR ]                                          = 'Or';
 		$mapping[ Slug::ORDER_BY ]                                    = 'Order by';
 		$mapping[ Slug::RANDOM ]                                      = 'Random';
 		$mapping[ Slug::REQUIRED_WORDPRESS_GREATER_THAN_3_DOT_7 ]     = 'Required wordpress >= 3.7+';
