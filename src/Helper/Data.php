@@ -2,7 +2,7 @@
 
 namespace OwpCore\Helper;
 
-use OwpCore\Constant\FilterHook\Data as DataFilter;
+use OwpCore\Constant\FilterHook\Data as DataFilterHook;
 use OwpCore\Constant\HTML\Attribute;
 use OwpCore\Contract\DataInterface;
 use OwpCore\Pattern\Singleton;
@@ -20,28 +20,40 @@ class Data implements DataInterface {
 	private function _set_allowed_tags() {
 		$tags = wp_kses_allowed_html( 'post' );
 
-		$tags[ Tag::IFRAME ][ Attribute::SRC ]              = array();
-		$tags[ Tag::IFRAME ][ Attribute::HEIGHT ]           = array();
-		$tags[ Tag::IFRAME ][ Attribute::WIDTH ]            = array();
-		$tags[ Tag::IFRAME ][ Attribute::FRAME_BORDER ]     = array();
-		$tags[ Tag::IFRAME ][ Attribute::ALLOW_FULLSCREEN ] = array();
+		// Iframe.
+		$iframe = [
+			Attribute::SRC              => 1,
+			Attribute::HEIGHT           => 1,
+			Attribute::WIDTH            => 1,
+			Attribute::FRAME_BORDER     => 1,
+			Attribute::ALLOW_FULLSCREEN => 1
+		];
 
-		$tags[ Tag::INPUT ][ Attribute::CLASSES ] = array();
-		$tags[ Tag::INPUT ][ Attribute::ID ]      = array();
-		$tags[ Tag::INPUT ][ Attribute::NAME ]    = array();
-		$tags[ Tag::INPUT ][ Attribute::VALUE ]   = array();
-		$tags[ Tag::INPUT ][ Attribute::TYPE ]    = array();
-		$tags[ Tag::INPUT ][ Attribute::CHECKED ] = array();
+		$tags[ Tag::IFRAME ] = array_merge( $iframe, $tags[ Tag::IFRAME ] ?? [] );
 
-		$tags[ Tag::SELECT ][ Attribute::CLASSES ] = array();
-		$tags[ Tag::SELECT ][ Attribute::ID ]      = array();
-		$tags[ Tag::SELECT ][ Attribute::NAME ]    = array();
-		$tags[ Tag::SELECT ][ Attribute::VALUE ]   = array();
-		$tags[ Tag::SELECT ][ Attribute::TYPE ]    = array();
+		// Input.
+		$input              = [
+			Attribute::CLASSES => 1,
+			Attribute::ID      => 1,
+			Attribute::NAME    => 1,
+			Attribute::VALUE   => 1,
+			Attribute::TYPE    => 1,
+			Attribute::CHECKED => 1
+		];
+		$tags[ Tag::INPUT ] = array_merge( $input, $tags[ Tag::INPUT ] ?? [] );
 
-		$tags[ Tag::OPTION ][ Attribute::SELECTED ] = array();
+		// Select.
+		$select              = [
+			Attribute::CLASSES => 1,
+			Attribute::ID      => 1,
+			Attribute::NAME    => 1,
+			Attribute::VALUE   => 1,
+			Attribute::TYPE    => 1,
+		];
+		$tags[ Tag::SELECT ] = array_merge( $select, $tags[ Tag::SELECT ] ?? [] );
 
-		$tags[ Tag::STYLE ][ Attribute::TYPE ] = array();
+		$tags[ Tag::OPTION ][ Attribute::SELECTED ] = 1;
+		$tags[ Tag::STYLE ][ Attribute::TYPE ]      = 1;
 
 		$microdata_tags = array(
 			Tag::DIV,
@@ -54,13 +66,16 @@ class Data implements DataInterface {
 			Tag::FIGURE
 		);
 
+		$microdata_common = [
+			Attribute::ITEM_SCOPE => 1,
+			Attribute::ITEM_TYPE  => 1,
+			Attribute::ITEM_PROP  => 1
+		];
 		foreach ( $microdata_tags as $tag ) {
-			$tags[ $tag ][ Attribute::ITEM_SCOPE ] = array();
-			$tags[ $tag ][ Attribute::ITEM_TYPE ]  = array();
-			$tags[ $tag ][ Attribute::ITEM_PROP ]  = array();
+			$tags[ $tag ] = array_merge( $microdata_common, $tags[ $tag ] ?? [] );
 		}
 
-		$this->_allowed_tags = apply_filters( DataFilter::SET_ALLOWED_TAGS, $tags );
+		$this->_allowed_tags = apply_filters( DataFilterHook::SET_ALLOWED_TAGS, $tags );
 	}
 
 	public function get_allowed_tags(): array {
