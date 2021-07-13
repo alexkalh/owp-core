@@ -77,4 +77,12 @@ class BEM implements CssPreprocessor {
 
 		return implode( ' ', $classes );
 	}
+
+	public static function state( string $state ): string {
+		return sprintf( 'is_%s', $state );
+	}
+
+	public static function echo( string $name, string $modifier = '', string $affix = '', string $prefix = 'owp-' ): string {
+		return ( new BEM( $name, $modifier, $affix, $prefix ) )->to_string();
+	}
 }
