@@ -4,6 +4,7 @@ namespace OwpCore\Helper;
 
 use OwpCore\Constant\FilterHook\Data as DataFilter;
 use OwpCore\Constant\HTML\Attribute;
+use OwpCore\Contract\DataInterface;
 use OwpCore\Pattern\Singleton;
 use OwpCore\Constant\HTML\Tag;
 
