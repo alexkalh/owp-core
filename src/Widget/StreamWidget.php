@@ -3,7 +3,6 @@
 namespace OwpCore\Widget;
 
 use OwpCore\Constant\I18n\Slug;
-use OwpCore\Helper\Data;
 
 abstract class StreamWidget extends Widget implements StreamWidgetInterface {
 	/**
@@ -39,11 +38,6 @@ abstract class StreamWidget extends Widget implements StreamWidgetInterface {
 	 * @inheritDoc
 	 */
 	public function form( $instance ) {
-		/**
-		 * @var Data $medmag_data
-		 */
-		$medmag_data = Data::get_instance();
-
 		$instance = wp_parse_args( (array) $instance, $this->get_default() );
 		extract( $instance );
 		?>
@@ -166,7 +160,7 @@ abstract class StreamWidget extends Widget implements StreamWidgetInterface {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'in' ) ); ?>"><?php echo wp_kses( sprintf( '%s <i>%s</i>', $this->translator->i18n( Slug::IN ), $this->translator->i18n( Slug::REQUIRED_WORDPRESS_GREATER_THAN_3_DOT_7 ) ), $medmag_data->get_allowed_tags() ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'in' ) ); ?>"><?php echo wp_kses( sprintf( '%s <i>%s</i>', $this->translator->i18n( Slug::IN ), $this->translator->i18n( Slug::REQUIRED_WORDPRESS_GREATER_THAN_3_DOT_7 ) ), $this->data->get_allowed_tags() ); ?></label>
             <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'in' ) ); ?>"
                     name="<?php echo esc_attr( $this->get_field_name( 'in' ) ); ?>">
 				<?php

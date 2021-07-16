@@ -5,11 +5,9 @@ namespace OwpCore\Helper;
 use OwpCore\Constant\FilterHook\Data as DataFilterHook;
 use OwpCore\Constant\HTML\Attribute;
 use OwpCore\Contract\DataInterface;
-use OwpCore\Pattern\Singleton;
 use OwpCore\Constant\HTML\Tag;
 
 class Data implements DataInterface {
-	use Singleton;
 
 	private array $_allowed_tags;
 

@@ -4,11 +4,8 @@ namespace OwpCore\I18n;
 
 use OwpCore\Constant\FilterHook\I18n;
 use OwpCore\Contract\I18n\DictionaryInterface;
-use OwpCore\Pattern\Singleton;
 
 class Dictionary implements DictionaryInterface {
-	use Singleton;
-
 	private array $book;
 
 	public function __construct() {
