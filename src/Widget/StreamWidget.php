@@ -153,8 +153,8 @@ abstract class StreamWidget extends Widget implements StreamWidgetInterface {
                     name="<?php echo esc_attr( $this->get_field_name( 'relation' ) ); ?>">
 				<?php
 				$relations = array(
-					'AND' => $this->translator->i18n( Slug:: AND ),
-					'OR'  => $this->translator->i18n( Slug:: OR )
+					'AND' => $this->translator->i18n( Slug::CONDITIONAL_AND ),
+					'OR'  => $this->translator->i18n( Slug::CONDITIONAL_OR )
 				);
 				foreach ( $relations as $value => $title ) {
 					?>

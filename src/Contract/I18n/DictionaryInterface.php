@@ -2,6 +2,8 @@
 
 namespace OwpCore\Contract\I18n;
 
-interface DictionaryInterface {
+use OwpCore\Constant\I18n\Slug;
+
+interface DictionaryInterface extends Slug {
 	public function get( string $key ): string;
 }

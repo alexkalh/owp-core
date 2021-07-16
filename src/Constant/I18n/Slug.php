@@ -4,7 +4,7 @@ namespace OwpCore\Constant\I18n;
 
 interface Slug {
 	const ALL = 'all';
-	const AND = 'and';
+	const CONDITIONAL_AND = 'and';
 	const CATEGORIES = 'categories';
 	const COMBINE_CONDITION_BY_TAGS_CATEGORIES_FORMAT = 'combine_condition_by_tags_categories_format';
 	const FORMAT = 'format';
@@ -15,7 +15,7 @@ interface Slug {
 	const MONTHS = 'months';
 	const MOST_COMMENTS = 'most_comments';
 	const NUMBER_OF_POSTS = 'number_of_posts';
-	const OR = 'or';
+	const CONDITIONAL_OR = 'or';
 	const ORDER_BY = 'order_by';
 	const RANDOM = 'random';
 	const REQUIRED_WORDPRESS_GREATER_THAN_3_DOT_7 = 'required_wordpress_3_dot_7';
