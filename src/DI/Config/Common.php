@@ -6,9 +6,8 @@ use Aura\Di\{Container, ContainerConfig};
 use Aura\Di\Exception\{ContainerLocked, ServiceNotObject};
 use OwpCore\Contract\I18n\{DictionaryInterface, TranslatorInterface};
 use OwpCore\I18n\{Dictionary, Translator};
-use OwpCore\Contract\DataInterface;
-use OwpCore\Helper\Data;
-
+use OwpCore\Contract\{CssNamingInterface, DataInterface};
+use OwpCore\Helper\{BemCssNaming, Data};
 
 class Common extends ContainerConfig {
 	/**
@@ -16,6 +15,8 @@ class Common extends ContainerConfig {
 	 * @throws ContainerLocked
 	 */
 	public function define( Container $di ): void {
+		$di->set( CssNamingInterface::class, $di->lazyNew( BemCssNaming::class ) );
+
 		$di->set( DataInterface::class, $di->lazyNew( Data::class ) );
 		$di->set( DictionaryInterface::class, $di->lazyNew( Dictionary::class ) );
 
