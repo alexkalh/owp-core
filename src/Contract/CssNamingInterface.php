@@ -9,6 +9,10 @@ interface CssNamingInterface {
 
 	public function get_class(): string;
 
+	public function append_class( array $extra_classes = [] ): string;
+
+	public function print_class( array $extra_classes = [] ): void;
+
 	public function child( string $child ): CssNamingInterface;
 
 	public function children( array $children ): array;

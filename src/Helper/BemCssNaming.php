@@ -41,6 +41,16 @@ class BemCssNaming implements CssNamingInterface {
 		return $this->class;
 	}
 
+	public function append_class( array $extra_classes = [] ): string {
+		array_push( $extra_classes, $this->get_class() );
+
+		return implode( ' ', $extra_classes );
+	}
+
+	public function print_class( array $extra_classes = [] ): void {
+		echo esc_attr( $this->append_class( $extra_classes ) );
+	}
+
 	/**
 	 * @throws ServiceNotFound
 	 */
@@ -63,9 +73,17 @@ class BemCssNaming implements CssNamingInterface {
 		return $this->get_cache( $slug );
 	}
 
-	public function children( array $elements ): array {
-		// TODO: Implement children() method.
-		return [];
+	/**
+	 * @throws ServiceNotFound
+	 */
+	public function children( array $children ): array {
+		$list_of_css_naming = array();
+
+		foreach ( $children as $child ) {
+			array_push( $list_of_css_naming, $this->child( $child ) );
+		}
+
+		return $list_of_css_naming;
 	}
 
 	public function set_block( string $block ): CssNamingInterface {
