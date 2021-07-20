@@ -1,6 +1,6 @@
 <?php
 
-namespace OwpCore\Contract;
+namespace OwpCore\Contract\Helper;
 
 interface CssNamingInterface {
 	public function init( string $block, string $modifier = '', string $element = '', string $prefix = 'owp-' ): CssNamingInterface;

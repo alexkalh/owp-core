@@ -3,7 +3,7 @@
 namespace OwpCore\Helper;
 
 use Aura\Di\Exception\ServiceNotFound;
-use OwpCore\Contract\CssNamingInterface;
+use OwpCore\Contract\Helper\CssNamingInterface;
 use OwpCore\Engine;
 
 class BemCssNaming implements CssNamingInterface {

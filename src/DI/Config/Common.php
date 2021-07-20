@@ -6,7 +6,7 @@ use Aura\Di\{Container, ContainerConfig};
 use Aura\Di\Exception\{ContainerLocked, ServiceNotObject};
 use OwpCore\Contract\I18n\{DictionaryInterface, TranslatorInterface};
 use OwpCore\I18n\{Dictionary, Translator};
-use OwpCore\Contract\{CssNamingInterface, DataInterface};
+use OwpCore\Contract\Helper\{CssNamingInterface, DataInterface};
 use OwpCore\Helper\{BemCssNaming, Data};
 
 class Common extends ContainerConfig {

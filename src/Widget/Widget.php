@@ -6,10 +6,9 @@ use OwpCore\Cache\CacheFactory;
 use OwpCore\Constant\Duration;
 use OwpCore\Constant\FilterHook\Cache;
 use OwpCore\Contract\CacheableInterface;
-use OwpCore\Contract\DataInterface;
+use OwpCore\Contract\Helper\DataInterface;
 use OwpCore\Contract\I18n\TranslatorInterface;
 use OwpCore\Engine;
-use OwpCore\I18n\Translator;
 use WP_Widget;
 
 /**
