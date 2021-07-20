@@ -14,6 +14,10 @@ class BemCssNaming implements CssNamingInterface {
 	private string $prefix;
 	private array $cache;
 
+	const MODIFIER_BRIDGE = '--';
+	const ELEMENT_BRIDGE = '__';
+	const STATE_BRIDGE = '-';
+
 	public function init( string $block, string $modifier = '', string $element = '', string $prefix = 'owp-' ): CssNamingInterface {
 		$this->set_block( $block );
 		$this->set_modifier( $modifier );
@@ -27,11 +31,11 @@ class BemCssNaming implements CssNamingInterface {
 		$this->class = $this->get_prefix() . $this->get_block();
 
 		if ( $modifier = $this->get_modifier() ) {
-			$this->class .= '--' . $modifier;
+			$this->class .= self::MODIFIER_BRIDGE . $modifier;
 		}
 
 		if ( $element = $this->get_element() ) {
-			$this->class .= '__' . $element;
+			$this->class .= self::ELEMENT_BRIDGE . $element;
 		}
 
 		return $this;
@@ -55,7 +59,7 @@ class BemCssNaming implements CssNamingInterface {
 	 * @throws ServiceNotFound
 	 */
 	public function child( string $child ): CssNamingInterface {
-		$slug = ( $element = $this->get_element() ) ? $element . '__' . $child : $child;
+		$slug = ( $element = $this->get_element() ) ? $element . self::ELEMENT_BRIDGE . $child : $child;
 
 		if ( ! $this->is_cached( $slug ) ) {
 			/** @var CssNamingInterface $css_naming */
@@ -141,6 +145,6 @@ class BemCssNaming implements CssNamingInterface {
 	}
 
 	public static function is( string $state ): string {
-		return sprintf( 'is-%s', $state );
+		return 'is' . self::STATE_BRIDGE . $state;
 	}
 }
