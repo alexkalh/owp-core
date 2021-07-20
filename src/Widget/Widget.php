@@ -24,7 +24,7 @@ abstract class Widget extends WP_Widget implements WidgetInterface, CacheableInt
 	 * @inheritDoc
 	 */
 	public function __construct( string $id_base, string $name, $widget_options = array(), $control_options = array() ) {
-		$this->_is_use_cache = get_theme_mod( Cache::IS_USE_IN_WIDGET, true );
+		$this->_is_use_cache = get_theme_mod( Cache::IS_USE_IN_WIDGET, false );
 
 		try {
 			$this->translator = Engine::resolve( TranslatorInterface::class );
