@@ -2,7 +2,7 @@
 
 namespace OwpCore\Widget;
 
-use OwpCore\Helper\Data;
+use OwpCore\Constant\I18n\Slug;
 
 abstract class StreamWidget extends Widget implements StreamWidgetInterface {
 	/**
@@ -38,37 +38,32 @@ abstract class StreamWidget extends Widget implements StreamWidgetInterface {
 	 * @inheritDoc
 	 */
 	public function form( $instance ) {
-		/**
-		 * @var Data $medmag_data
-		 */
-		$medmag_data = Data::get_instance();
-
 		$instance = wp_parse_args( (array) $instance, $this->get_default() );
 		extract( $instance );
 		?>
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'medmag' ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php $this->translator->i18n( Slug::TITLE, true ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
                    name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text"
                    value="<?php echo esc_attr( strip_tags( $instance['title'] ) ); ?>"/>
         </p>
 
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'posts_per_page' ) ); ?>"><?php esc_html_e( 'Number of posts:', 'medmag' ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'posts_per_page' ) ); ?>"><?php $this->translator->i18n( Slug::NUMBER_OF_POSTS, true ); ?></label>
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'posts_per_page' ) ); ?>"
                    name="<?php echo esc_attr( $this->get_field_name( 'posts_per_page' ) ); ?>" type="text"
                    value="<?php echo esc_attr( (int) $instance['posts_per_page'] ); ?>"/>
         </p>
 
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>"><?php esc_html_e( 'Order by:', 'medmag' ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>"><?php $this->translator->i18n( Slug::ORDER_BY, true ); ?></label>
             <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'orderby' ) ); ?>"
                     name="<?php echo esc_attr( $this->get_field_name( 'orderby' ) ); ?>">
 				<?php
 				$orderBys = array(
-					'date'          => esc_attr__( 'Latest news', 'medmag' ),
-					'comment_count' => esc_attr__( 'Most comments', 'medmag' ),
-					'rand'          => esc_attr__( 'Random', 'medmag' )
+					'date'          => $this->translator->i18n( Slug::LATEST_NEWS ),
+					'comment_count' => $this->translator->i18n( Slug::MOST_COMMENTS ),
+					'rand'          => $this->translator->i18n( Slug::RANDOM )
 				);
 				foreach ( $orderBys as $value => $title ) {
 					?>
@@ -80,11 +75,11 @@ abstract class StreamWidget extends Widget implements StreamWidgetInterface {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>"><?php esc_html_e( 'Categories:', 'medmag' ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>"><?php $this->translator->i18n( Slug::CATEGORIES, true ); ?></label>
             <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'category' ) ); ?>"
                     name="<?php echo esc_attr( $this->get_field_name( 'category' ) ); ?>[]" multiple="multiple"
                     size="5">
-                <option value=""><?php esc_html_e( 'All', 'medmag' ); ?></option>
+                <option value=""><?php $this->translator->i18n( Slug::ALL, true ); ?></option>
 				<?php
 				$terms = get_terms( 'category' );
 				if ( $terms ) {
@@ -103,15 +98,15 @@ abstract class StreamWidget extends Widget implements StreamWidgetInterface {
             <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'is_include_children' ) ); ?>"
                    name="<?php echo esc_attr( $this->get_field_name( 'is_include_children' ) ); ?>" type="checkbox"
                    value="1" <?php checked( 1, (int) $instance['is_include_children'], true ); ?> />
-            <label for="<?php echo esc_attr( $this->get_field_id( 'is_include_children' ) ); ?>"><?php esc_html_e( 'Is include categories children ?', 'medmag' ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'is_include_children' ) ); ?>"><?php $this->translator->i18n( Slug::IS_INCLUDE_CATEGORIES_CHILDREN, true ) ?></label>
         </p>
 
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'post_tag' ) ); ?>"><?php esc_html_e( 'Tags:', 'medmag' ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'post_tag' ) ); ?>"><?php $this->translator->i18n( Slug::TAGS, true ) ?></label>
             <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'post_tag' ) ); ?>"
                     name="<?php echo esc_attr( $this->get_field_name( 'post_tag' ) ); ?>[]" multiple="multiple"
                     size="5">
-                <option value=""><?php esc_html_e( 'All', 'medmag' ); ?></option>
+                <option value=""><?php $this->translator->i18n( Slug::ALL, true ) ?></option>
 				<?php
 				$terms = get_terms( 'post_tag' );
 				if ( $terms ) {
@@ -127,11 +122,11 @@ abstract class StreamWidget extends Widget implements StreamWidgetInterface {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'post_format' ) ); ?>"><?php esc_html_e( 'Format:', 'medmag' ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'post_format' ) ); ?>"><?php $this->translator->i18n( Slug::FORMAT, true ); ?></label>
             <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'post_format' ) ); ?>"
                     name="<?php echo esc_attr( $this->get_field_name( 'post_format' ) ); ?>[]" multiple="multiple"
                     size="5">
-                <option value=""><?php esc_html_e( '-- All --', 'medmag' ); ?></option>
+                <option value=""><?php $this->translator->i18n( Slug::ALL, true ); ?></option>
 				<?php
 				$terms = get_terms( 'post_format' );
 				if ( $terms ) {
@@ -147,13 +142,13 @@ abstract class StreamWidget extends Widget implements StreamWidgetInterface {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'relation' ) ); ?>"><?php esc_html_e( 'Combine condition by Tags, Categories, Format', 'medmag' ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'relation' ) ); ?>"><?php $this->translator->i18n( Slug::COMBINE_CONDITION_BY_TAGS_CATEGORIES_FORMAT, true ); ?></label>
             <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'relation' ) ); ?>"
                     name="<?php echo esc_attr( $this->get_field_name( 'relation' ) ); ?>">
 				<?php
 				$relations = array(
-					'AND' => esc_attr__( 'And', 'medmag' ),
-					'OR'  => esc_attr__( 'Or', 'medmag' ),
+					'AND' => $this->translator->i18n( Slug::CONDITIONAL_AND ),
+					'OR'  => $this->translator->i18n( Slug::CONDITIONAL_OR )
 				);
 				foreach ( $relations as $value => $title ) {
 					?>
@@ -165,31 +160,31 @@ abstract class StreamWidget extends Widget implements StreamWidgetInterface {
         </p>
 
         <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'in' ) ); ?>"><?php echo wp_kses( sprintf( '%s <i>%s</i>', esc_attr__( 'In:', 'medmag' ), esc_attr__( '(require Wordpress 3.7+)', 'medmag' ) ), $medmag_data->get_allowed_tags() ); ?></label>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'in' ) ); ?>"><?php echo wp_kses( sprintf( '%s <i>%s</i>', $this->translator->i18n( Slug::IN ), $this->translator->i18n( Slug::REQUIRED_WORDPRESS_GREATER_THAN_3_DOT_7 ) ), $this->data->get_allowed_tags() ); ?></label>
             <select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'in' ) ); ?>"
                     name="<?php echo esc_attr( $this->get_field_name( 'in' ) ); ?>">
 				<?php
 				$times = array(
-					''          => esc_attr__( '-- All --', 'medmag' ),
-					'-1 week'   => esc_attr__( '1 week', 'medmag' ),
-					'-2 week'   => esc_attr__( '2 weeks', 'medmag' ),
-					'-3 week'   => esc_attr__( '3 weeks', 'medmag' ),
-					'-1 month'  => esc_attr__( '1 months', 'medmag' ),
-					'-2 month'  => esc_attr__( '2 months', 'medmag' ),
-					'-3 month'  => esc_attr__( '3 months', 'medmag' ),
-					'-4 month'  => esc_attr__( '4 months', 'medmag' ),
-					'-5 month'  => esc_attr__( '5 months', 'medmag' ),
-					'-6 month'  => esc_attr__( '6 months', 'medmag' ),
-					'-7 month'  => esc_attr__( '7 months', 'medmag' ),
-					'-8 month'  => esc_attr__( '8 months', 'medmag' ),
-					'-9 month'  => esc_attr__( '9 months', 'medmag' ),
-					'-10 month' => esc_attr__( '10 months', 'medmag' ),
-					'-11 month' => esc_attr__( '11 months', 'medmag' ),
-					'-1 year'   => esc_attr__( '1 year', 'medmag' ),
-					'-2 year'   => esc_attr__( '2 years', 'medmag' ),
-					'-3 year'   => esc_attr__( '3 years', 'medmag' ),
-					'-4 year'   => esc_attr__( '4 years', 'medmag' ),
-					'-5 year'   => esc_attr__( '5 years', 'medmag' )
+					''          => $this->translator->i18n( Slug::ALL ),
+					'-1 week'   => "1 " . $this->translator->i18n( Slug::WEEK ),
+					'-2 week'   => "2 " . $this->translator->i18n( Slug::WEEKS ),
+					'-3 week'   => "3 " . $this->translator->i18n( Slug::WEEKS ),
+					'-1 month'  => "1 " . $this->translator->i18n( Slug::MONTH ),
+					'-2 month'  => "2 " . $this->translator->i18n( Slug::MONTHS ),
+					'-3 month'  => "3 " . $this->translator->i18n( Slug::MONTHS ),
+					'-4 month'  => "4 " . $this->translator->i18n( Slug::MONTHS ),
+					'-5 month'  => "5 " . $this->translator->i18n( Slug::MONTHS ),
+					'-6 month'  => "6 " . $this->translator->i18n( Slug::MONTHS ),
+					'-7 month'  => "7 " . $this->translator->i18n( Slug::MONTHS ),
+					'-8 month'  => "8 " . $this->translator->i18n( Slug::MONTHS ),
+					'-9 month'  => "9 " . $this->translator->i18n( Slug::MONTHS ),
+					'-10 month' => "10 " . $this->translator->i18n( Slug::MONTHS ),
+					'-11 month' => "11 " . $this->translator->i18n( Slug::MONTHS ),
+					'-1 year'   => "1 " . $this->translator->i18n( Slug::YEAR ),
+					'-2 year'   => "2 " . $this->translator->i18n( Slug::YEARS ),
+					'-3 year'   => "3 " . $this->translator->i18n( Slug::YEARS ),
+					'-4 year'   => "4 " . $this->translator->i18n( Slug::YEARS ),
+					'-5 year'   => "5 " . $this->translator->i18n( Slug::YEARS )
 				);
 				foreach ( $times as $value => $title ) {
 					?>

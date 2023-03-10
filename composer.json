@@ -9,7 +9,9 @@
             "email": "openwp.org@gmai.com"
         }
     ],
-    "require": {},
+    "require": {
+        "aura/di": "^4.1"
+    },
     "autoload": {
         "psr-4": {
             "OWP\\": "./src/"
